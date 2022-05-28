@@ -16,10 +16,25 @@ export const getStaticPaths = async () => {
 
 }
 
-const Details = () => {
+
+export const getStaticProps = async (context) => {
+     const id = context.params.id;
+     const res = await fetch('https://jsonplaceholder.typicode.com/users/' + id);
+     const data = await res.json();
+
+     return {
+         props: { panda: data }
+     }
+}
+
+
+const Details = ({ panda }) => {
     return (  
         <div>
-            <h1>Details Page</h1>
+            <h1>{ panda.name }</h1>
+            <p>{ panda.email }</p>
+            <p>{ panda.website }</p>
+            <p>{ panda.address.city }</p>
         </div>
     );
 }
