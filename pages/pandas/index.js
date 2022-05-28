@@ -1,5 +1,6 @@
 import styles from '../../styles/Pandas.module.css'
 import Head from 'next/head'
+import Link from 'next/link'
 
 export const getStaticProps = async () => {
    
@@ -23,11 +24,11 @@ const Pandas = ({ pandas }) => {
             <div>
                 <h1>This world belongs to Pandas!</h1>
                 {pandas.map(panda => (
-                    <div key={panda.id}>
+                    <Link href={'/pandas/' + panda.id} key={panda.id}>
                      <a className={styles.single}>
                          <h3>{ panda.name }</h3>
                      </a>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </> 
